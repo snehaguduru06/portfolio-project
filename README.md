@@ -7,7 +7,7 @@ This is my personal portfolio website created as a BCA project.
 - Skills section
 - Certificates section
 - Contact form (Flask backend)
-- Black and grey modern theme
+- Black and yellow modern theme
 
 ## Technologies Used
 - HTML
@@ -20,3 +20,4 @@ This is my personal portfolio website created as a BCA project.
 This project was created to showcase my skills, certifications, and contact details in a professional format.
 
 Created by Sneha Guduru
+
