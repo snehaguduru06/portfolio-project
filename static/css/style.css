@@ -1,0 +1,134 @@
+/* ===== Body Styling ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #000;      /* Black background */
+    color: #FFD700;              /* Yellow text */
+    line-height: 1.8;
+}
+
+/* ===== Navigation ===== */
+nav {
+    text-align: center;
+    padding: 20px;
+    background-color: #111;
+}
+
+nav a {
+    color: #FFD700;              /* Yellow links */
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #fff;                 /* White on hover */
+}
+
+/* ===== Sections ===== */
+section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+/* ===== Headings ===== */
+h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+/* ===== Paragraph ===== */
+p {
+    font-size: 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+/* ===== Profile Image ===== */
+#about img {
+    margin-top: 30px;
+    width: 200px;
+    border-radius: 50%;
+    border: 3px solid #FFD700;   /* Yellow border */
+}
+
+/* ===== Certificates Section ===== */
+.certificates-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.cert-box {
+    background-color: #111;
+    padding: 30px;
+    border-radius: 10px;
+    width: 220px;
+    border: 1px solid #FFD700;
+}
+
+.cert-box h3 {
+    margin-bottom: 15px;
+}
+
+/* ===== Skills Section ===== */
+.skills-list {
+    list-style: none;
+    padding: 0;
+}
+
+.skills-list li {
+    font-size: 22px;
+    margin: 15px 0;
+}
+
+/* ===== Contact Form ===== */
+input, textarea {
+    width: 400px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    font-size: 18px;
+    background-color: #111;
+    color: #FFD700;
+}
+
+textarea {
+    height: 120px;
+}
+
+/* ===== Button ===== */
+button {
+    padding: 12px 25px;
+    background-color: #FFD700;
+    color: black;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: white;
+}
+
+/* ===== Footer ===== */
+footer {
+    background-color: #111;
+    padding: 20px;
+    font-size: 18px;
+}
