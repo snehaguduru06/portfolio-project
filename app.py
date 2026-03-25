@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def get_db_connection():
     database_url = os.environ.get('DATABASE_URL')
-    return psycopg2.connect(database_url)
+    return psycopg2.connect(database_url,sslmode='require')
 
 # THIS PART IS NEW - It builds the table for you!
 def create_table():
