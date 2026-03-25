@@ -1,13 +1,28 @@
-from flask import Flask, render_template, request
-import psycopg2 # Use psycopg2 for Render Postgres
 import os
+import psycopg2
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
 def get_db_connection():
-    # This pulls the 'Internal Connection String' from your Render Postgres settings
-    db_url = os.environ.get('DATABASE_URL')
-    return psycopg2.connect(db_url)
+    database_url = os.environ.get('DATABASE_URL')
+    return psycopg2.connect(database_url)
+
+# THIS PART IS NEW - It builds the table for you!
+def create_table():
+    conn = get_db_connection()
+    cur = conn.cursor()
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS messages (
+            id SERIAL PRIMARY KEY,
+            name VARCHAR(255),
+            email VARCHAR(255),
+            message TEXT
+        );
+    ''')
+    conn.commit()
+    cur.close()
+    conn.close()
 
 @app.route("/")
 def home():
@@ -21,15 +36,14 @@ def contact():
 
     conn = get_db_connection()
     cur = conn.cursor()
-    # Postgres uses %s for placeholders
     cur.execute("INSERT INTO messages (name, email, message) VALUES (%s, %s, %s)",
                 (name, email, message))
     conn.commit()
     cur.close()
     conn.close()
-    return "Message saved successfully"
+    return "Message saved successfully! Go back and refresh to see it."
 
 if __name__ == "__main__":
-    # Safety check for the Port to prevent the 'NoneType' error
-    port = int(os.environ.get("PORT", 10000)) 
+    create_table() # This runs as soon as Render starts your app
+    port = int(os.environ.get("PORT", 10000))
     app.run(host='0.0.0.0', port=port)
