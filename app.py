@@ -34,15 +34,30 @@ def contact():
     email = request.form.get("email")
     message = request.form.get("message")
 
-    conn = get_db_connection()
-    cur = conn.cursor()
-    cur.execute("INSERT INTO messages (name, email, message) VALUES (%s, %s, %s)",
-                (name, email, message))
-    conn.commit()
-    cur.close()
-    conn.close()
-    return "Message saved successfully! Go back and refresh to see it."
-
+    try:
+        conn = get_db_connection()
+        cur = conn.cursor()
+        
+        # 1. Force create the table right before saving
+        cur.execute('''
+            CREATE TABLE IF NOT EXISTS messages (
+                id SERIAL PRIMARY KEY,
+                name VARCHAR(255),
+                email VARCHAR(255),
+                message TEXT
+            );
+        ''')
+        
+        # 2. Now save the message
+        cur.execute("INSERT INTO messages (name, email, message) VALUES (%s, %s, %s)",
+                    (name, email, message))
+        
+        conn.commit()
+        cur.close()
+        conn.close()
+        return "Message saved successfully!"
+    except Exception as e:
+        return f"Database Error: {e}"
 if __name__ == "__main__":
     # This block creates the table automatically
     try:
